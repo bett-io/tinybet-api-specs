@@ -1,0 +1,36 @@
+swagger: '2.0'
+info:
+  title: Authenticate API
+  description: Bet on Anything
+  version: "1.0.0"
+# the domain of the service
+host: api.tinybet.io
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /session:
+    post:
+      summary: Create a new Session
+      description: |
+        This creates new session and returns generated session token.
+      parameters:
+        - name: fb_token
+          in: query
+          description: Facebook Access Token
+          required: true
+          type: string
+          format: string
+      tags:
+        - Session
+      responses:
+        200:
+          description: Session token is returned in Set-Cookie header
+          headers:
+            Set-Cookie:
+              description: Set session-id in cookie
+              type: string
